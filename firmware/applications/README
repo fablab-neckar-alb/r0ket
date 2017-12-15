@@ -14,3 +14,14 @@ source ~/scripts/sourceSourcery
 
 where sourceSourcery:
 export PATH=$PATH:/home/cmaier/CCC2011/r0ket/CodeSourcery/Sourcery_G++_Lite/bin
+
+To flash:
+r0ket/firmware$ gsettings set org.gnome.desktop.media-handling automount false
+r0ket/firmware$ gsettings get org.gnome.desktop.media-handling automount
+false
+
+r0ket/firmware$ make flash APP=mist
+
+r0ket/firmware$ gsettings set org.gnome.desktop.media-handling automount true
+r0ket/firmware$ gsettings get org.gnome.desktop.media-handling automount
+true
