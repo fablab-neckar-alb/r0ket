@@ -87,7 +87,7 @@ endif
 $(LIBFILE): $(OBJS) $(WRAPOBJ)
 	$(RM) -f $@
 	$(AR) rcs $@ $(OBJS) $(WRAPOBJ)
-	
+
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ $<
 

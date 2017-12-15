@@ -6,3 +6,11 @@ Call make as "make APP=filename" to build one.
 Default filename is "final", the official r0ket firmware.
 
 Have fun.
+
+Addition 2017DEC15:
+
+To set up the path to the CodeSourcery compiler,
+source ~/scripts/sourceSourcery
+
+where sourceSourcery:
+export PATH=$PATH:/home/cmaier/CCC2011/r0ket/CodeSourcery/Sourcery_G++_Lite/bin
