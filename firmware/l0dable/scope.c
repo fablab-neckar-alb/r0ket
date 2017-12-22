@@ -1,7 +1,7 @@
 /*
-  Simple oscilliscope with auto y-scale and variable x-scale.
+  Simple oscilloscope with auto y-scale and variable x-scale.
   Use joystick to select channel and x-scale and touch the hackbus ports
-  to generate some signals to see on your new oscilliscope.
+  to generate some signals to see on your new oscilloscope.
   Press the button to quit.
 
   Paul Gardner-Stephen paul@servalproject.org
@@ -24,7 +24,7 @@ void ram(void) {
   int alive=0;
   int ys[96];
   lcdClear();
-      DoString(5,1,"Oscilliscope");
+      DoString(5,1,"Oscilloscope");
     lcdDisplay();
     
     int i;
