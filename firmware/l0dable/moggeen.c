@@ -12,6 +12,7 @@
 
 void ram(void)
 {
+  lcdClear();
   lcdPrintln("Moggeeen");
   lcdPrintln(GLOBAL(nickname));
   lcdRefresh();
