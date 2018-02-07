@@ -12,12 +12,24 @@
 
 void ram(void)
 {
-  gpioSetValue(RB_LED0, 1);
-  gpioSetValue(RB_LED1, 1);
-  gpioSetValue(RB_LED2, 1);
   lcdClear();
   lcdPrintln("Moggeeeeen");
   lcdPrintln(GLOBAL(nickname));
   lcdRefresh();
-  while (getInputRaw() != BTN_ENTER);
+  uint8_t in;
+  while ((in= getInputRaw()) != BTN_ENTER)
+  {
+    if (BTN_UP == in)
+    {
+      gpioSetValue(RB_LED0, 1);
+      gpioSetValue(RB_LED1, 1);
+      gpioSetValue(RB_LED2, 1);
+    }
+    if (BTN_DOWN == in)
+    {
+      gpioSetValue(RB_LED0, 0);
+      gpioSetValue(RB_LED1, 0);
+      gpioSetValue(RB_LED2, 0);
+    }
+  }
 }
