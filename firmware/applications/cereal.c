@@ -8,15 +8,15 @@ void main_cereal(void) {
   DoString(0,y,"Ur-Huara-");
   DoString(0,y+getFontHeight()+4,"Schiissdraeck!");
   lcdDisplay();
-  //gpioSetDir(RB_HB0, gpioDirection_Input);
-  //gpioSetDir(RB_HB1, gpioDirection_Input);
-  //gpioSetDir(RB_HB2, gpioDirection_Input);
-  gpioSetDir(RB_HB3, gpioDirection_Input);
-  gpioSetDir(RB_HB4, gpioDirection_Input);
-  gpioSetDir(RB_HB5, gpioDirection_Input);
+  //gpioSetDir(RB_SPI_SS0, gpioDirection_Input);
+  //gpioSetDir(RB_SPI_SS1, gpioDirection_Input);
+  //gpioSetDir(RB_SPI_SS2, gpioDirection_Input);
+  gpioSetDir(RB_SPI_SS3, gpioDirection_Input);
+  gpioSetDir(RB_SPI_SS4, gpioDirection_Input);
+  gpioSetDir(RB_SPI_SS5, gpioDirection_Input);
   while (1) {
-    gpioSetValue(RB_LED0, gpioGetValue(RB_HB3));
-    gpioSetValue(RB_LED1, gpioGetValue(RB_HB4));
-    gpioSetValue(RB_LED2, gpioGetValue(RB_HB5));
+    gpioSetValue(RB_LED0, gpioGetValue(RB_SPI_SS3));
+    gpioSetValue(RB_LED1, gpioGetValue(RB_SPI_SS4));
+    gpioSetValue(RB_LED2, gpioGetValue(RB_SPI_SS5));
   }
 }
