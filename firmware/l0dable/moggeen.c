@@ -15,7 +15,6 @@ void ram(void)
   gpioSetValue(RB_LED0, 1);
   gpioSetValue(RB_LED1, 1);
   gpioSetValue(RB_LED2, 1);
-  gpioSetValue(RB_LED3, 1);
   lcdClear();
   lcdPrintln("Moggeeeeen");
   lcdPrintln(GLOBAL(nickname));
