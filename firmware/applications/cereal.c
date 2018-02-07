@@ -20,3 +20,7 @@ void main_cereal(void) {
     gpioSetValue(RB_LED2, gpioGetValue(RB_SPI_SS2));
   }
 }
+
+/*
+ For handling IRQs, see l0dable/Geigerct.c 
+*/
