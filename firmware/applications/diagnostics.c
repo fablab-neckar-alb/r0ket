@@ -10,6 +10,7 @@ But maybe let's try timer IRQs first ...
 */
 void main_diagnostics(void)
 {
+  backlightInit();
   while (1)
   {
     lcdClear();
