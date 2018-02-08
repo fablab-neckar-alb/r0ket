@@ -10,8 +10,10 @@ But maybe let's try timer IRQs first ...
 */
 void main_diagnostics(void)
 {
-  SCB_SYSAHBCLKCTRL|= SCB_SYSAHBCLKCTRL_CT16B0; 
-  TMR_TMR16B0PR= 0xFFFFFFFF;
+  SCB_SYSAHBCLKCTRL|= SCB_SYSAHBCLKCTRL_CT16B0;
+  TMR_TMR16B0PR= 0xFFFF;
+  TMR_TMR16B0MR0= 0x2000;
+  TMR_TMR16B0MCR= TMR_TMR16B0MCR_MR0_RESET_ENABLED;
   TMR_TMR16B0TCR= TMR_TMR16B0TCR_COUNTERENABLE_ENABLED;
   while (1)
   {
@@ -19,8 +21,8 @@ void main_diagnostics(void)
     lcdPrintln("ISER1");
     lcdPrintln(IntToStr(NVIC->ISER[1],8,F_HEX));
     lcdPrintln("TMR16B0");
-    lcdPrint("ctrl ");
-    lcdPrintln(IntToStr(TMR_TMR16B0TCR,8,F_HEX));
+    lcdPrint("MCR ");
+    lcdPrintln(IntToStr(TMR_TMR16B0MCR,8,F_HEX));
     lcdPrint("PR ");
     lcdPrintln(IntToStr(TMR_TMR16B0PR,4,F_HEX));
     lcdPrint("PC ");
