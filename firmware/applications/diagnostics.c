@@ -10,13 +10,13 @@ But maybe let's try timer IRQs first ...
 */
 void main_diagnostics(void)
 {
-  uint32_t clockcontrol;
   while (1)
   {
-    clockcontrol= SCB_SYSAHBCLKCTRL;
     lcdClear();
+    lcdPrintln("MEMREMAP");
+    lcdPrintln(IntToStr(SCB_MEMREMAP,8,F_HEX));
     lcdPrintln("SYSAHBCLKCTRL");
-    lcdPrintln(IntToStr(clockcontrol,8,F_HEX));
+    lcdPrintln(IntToStr(SCB_SYSAHBCLKCTRL,8,F_HEX));
     lcdRefresh();
     delayms(200);
   }
