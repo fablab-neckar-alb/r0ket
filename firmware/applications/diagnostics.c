@@ -15,8 +15,10 @@ void main_diagnostics(void)
     lcdClear();
     lcdPrintln("MEMREMAP");
     lcdPrintln(IntToStr(SCB_MEMREMAP,8,F_HEX));
-    lcdPrintln("SYSAHBCLKCTRL");
-    lcdPrintln(IntToStr(SCB_SYSAHBCLKCTRL,8,F_HEX));
+    lcdPrintln("ISER0");
+    lcdPrintln(IntToStr(NVIC->ISER[0],8,F_HEX));
+    lcdPrintln("ISER1");
+    lcdPrintln(IntToStr(NVIC->ISER[1],8,F_HEX));
     lcdRefresh();
     delayms(200);
   }
