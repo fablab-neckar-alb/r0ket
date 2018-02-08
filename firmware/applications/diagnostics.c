@@ -19,6 +19,10 @@ void main_diagnostics(void)
     lcdPrintln(IntToStr(NVIC->ISER[1],8,F_HEX));
     lcdPrintln("TMR16B0 ctrl");
     lcdPrintln(IntToStr(TMR_TMR16B0TCR,8,F_HEX));
+    lcdPrintln("TMR16B0 pre");
+    lcdPrintln(IntToStr(TMR_TMR16B0PR,8,F_HEX));
+    lcdPrint("PRE16B0 ");
+    lcdPrintln(IntToStr(TMR_TMR16B0PC,4,F_HEX));
     lcdPrint("TMR16B0 ");
     lcdPrintln(IntToStr(TMR_TMR16B0TC,4,F_HEX));
     lcdRefresh();
