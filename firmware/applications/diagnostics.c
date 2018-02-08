@@ -10,7 +10,6 @@ But maybe let's try timer IRQs first ...
 */
 void main_diagnostics(void)
 {
-  static uint8_t blink= 0;
   gpioSetDir(RB_LED1, gpioDirection_Output);
   SCB_SYSAHBCLKCTRL|= SCB_SYSAHBCLKCTRL_CT16B0;
   TMR_TMR16B0PR= 0xFFFF;
@@ -32,17 +31,13 @@ void main_diagnostics(void)
     lcdPrint("TC ");
     lcdPrintln(IntToStr(TMR_TMR16B0TC,4,F_HEX));
     lcdRefresh();
-    //delayms(200);
-    blink= (TMR_TMR16B0TC >= 0x1000);
-    gpioSetValue(RB_LED1, blink);
   }
 }
 
-/*
 void TIMER16_0_IRQHandler(void)
 {
   static uint8_t blink= 0;
-  TMR_TMR16B0IR= TMR_TMR16B0IR_MR0;
-  gpioSetValue(RB_LED1, ~blink);
+  blink= ~blink;
+  gpioSetValue(RB_LED1, 1 & blink);
+  TMR_TMR16B0IR|= TMR_TMR16B0IR_MR0;
 }
-*/
