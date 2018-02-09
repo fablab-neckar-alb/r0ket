@@ -15,7 +15,7 @@ void main_diagnostics(void)
   gpioSetDir(RB_SPI_SS2, gpioDirection_Output);
   SCB_SYSAHBCLKCTRL|= SCB_SYSAHBCLKCTRL_CT16B0;
   TMR_TMR16B0PR= 44;
-  TMR_TMR16B0MR0= 4;
+  TMR_TMR16B0MR0= 9;
   TMR_TMR16B0MCR= TMR_TMR16B0MCR_MR0_RESET_ENABLED | TMR_TMR16B0MCR_MR0_INT_ENABLED;
   TMR_TMR16B0TCR= TMR_TMR16B0TCR_COUNTERENABLE_ENABLED;
   NVIC_EnableIRQ(TIMER_16_0_IRQn);
@@ -38,8 +38,7 @@ void main_diagnostics(void)
 
 void TIMER16_0_IRQHandler(void)
 {
-  static uint8_t blink= 0;
-  blink= ~blink;
-  gpioSetValue(RB_SPI_SS2, 1 & blink);
+  gpioSetValue(RB_SPI_SS2, 1);
+  gpioSetValue(RB_SPI_SS2, 0);
   TMR_TMR16B0IR|= TMR_TMR16B0IR_MR0;
 }
