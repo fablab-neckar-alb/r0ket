@@ -18,7 +18,11 @@ void main_diagnostics(void)
 
 void TIMER16_0_IRQHandler(void)
 {
-  gpioSetValue(RB_SPI_SS2, 1);
-  gpioSetValue(RB_SPI_SS2, 0);
   TMR_TMR16B0IR|= TMR_TMR16B0IR_MR0;
+  // SPI22 is port 2 pin 8
+  volatile uint32_t *spi22writeaddr= (uint32_t *)GPIO_GPIO2_BASE + (1<<8);
+  *spi22writeaddr= 1<<8;
+  //__sync_synchronize();
+  *spi22writeaddr= 0;
+  //__sync_synchronize();
 }
