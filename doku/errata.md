@@ -36,3 +36,13 @@ Same thing with CodeSourcery compiler
 
     ../tools/bootloader/lpcfix -c firmware.bin
 
+##Using serial USB
+With
+
+    cmaier@DrEvil:~/CCC2011/r0ket/r0ket/firmware$ make flash USBSERIAL=YES APP=mist
+
+serial output works for a default baudrate of 115200.  
+Getting the serial port's attention with `miniterm /dev/ttyACM0 115200` is a bit tricky yet.
+
+
+
