@@ -14,4 +14,8 @@ pin 5 MISO to 27 PIO0.8/MISO/CT1B0_MAT0
 pin 6 IRQ to 23 PIO0.7/CTS  
 
 ##Find the appropriate abstraction level
+It's probably easier to start to communicate between sino:bits and the calliope-mini,
+because they use identical libraries.  
+Afterwards, try to receive their data packets with the r0ket, and eventually send a packet back.  
+
 
