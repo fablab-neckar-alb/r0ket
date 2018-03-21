@@ -44,5 +44,9 @@ With
 serial output works for a default baudrate of 115200.  
 Getting the serial port's attention with `miniterm /dev/ttyACM0 115200` is a bit tricky yet.
 
-
-
+##SWD interface
+It is unlikely that the r0ket support debugging through Serial Wire Debug, but the pins exist:  
+pin  4: Recover SWD  
+pin 28: SWO  
+pin 29: SWCLK  
+pin 39: SWDIO  
