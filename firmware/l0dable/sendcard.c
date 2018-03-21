@@ -33,13 +33,14 @@
 void sendFile(char *filename);
 
 uint8_t mac[5] = {1,2,3,2,1};
-    struct NRF_CFG config = {
-        .channel= 81,
-        .txmac= "\x1\x2\x3\x2\x1",
-        .nrmacs=1,
-        .mac0=  "\x1\x2\x3\x2\x1",
-        .maclen ="\x20",
-    };
+
+struct NRF_CFG config = {
+    .channel= 81,
+    .txmac= "\x1\x2\x3\x2\x1",
+    .nrmacs=1,
+    .mac0=  "\x1\x2\x3\x2\x1",
+    .maclen ="\x20",
+};
 
 void ram(void)
 {
