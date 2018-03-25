@@ -101,14 +101,29 @@ void dumpRadioRegisters(void)
 void main_radiotest(void)
 {
     static int count= 0;
+
+    gpioSetValue(RB_LED0, 0);
+    gpioSetValue(RB_LED1, 0);
+    gpioSetValue(RB_LED2, 0);
+
     usbCDCInit();
     nrf_init();
-    delayms(5000);
-    DoString(0,20,"radio test");
+
+    DoString(20,20,"radio test");
     lcdDisplay();
  considered_harmful:
+    while (BTN_ENTER != getInputRaw());
+
+    gpioSetValue(RB_LED0, 1);
+    gpioSetValue(RB_LED1, 1);
+    gpioSetValue(RB_LED2, 1);
+    
     printf("dump #%08x\r\n", count++);
     dumpRadioRegisters();
-    delayms(2000);
+
+    gpioSetValue(RB_LED0, 0);
+    gpioSetValue(RB_LED1, 0);
+    gpioSetValue(RB_LED2, 0);
+
     goto considered_harmful;
 }
