@@ -3,7 +3,7 @@
 #include <basic/basic.h>
 #include <core/ssp/ssp.h>
 #include <usbcdc/util.h>
-
+#include <lcd/render.h>
 
 /*-----------------------------------------------------------------------*/
 /* Transmit a byte via SPI                                               */
@@ -71,11 +71,11 @@ void putlongreg(uint8_t reg, uint8_t bytes, char *name)
 void dumpRadioRegisters(void)
 {
     putreg(R_CONFIG, "R_CONFIG\t");
-    putreg(R_EN_AA, "R_EN_AA\t");
+    putreg(R_EN_AA, "R_EN_AA   \t");
     putreg(R_EN_RXADDR, "R_EN_RXADDR\t");
     putreg(R_SETUP_AW, "R_SETUP_AW\t");
     putreg(R_SETUP_RETR, "R_SETUP_RETR\t");
-    putreg(R_RF_CH, "R_RF_CH\t");
+    putreg(R_RF_CH, "R_RF_CH   \t");
     putreg(R_RF_SETUP, "R_RF_SETUP\t");
     putreg(R_STATUS, "R_STATUS\t");
     putreg(R_OBSERVE_TX, "R_OBSERVE_TX\t");
@@ -94,7 +94,7 @@ void dumpRadioRegisters(void)
     putreg(R_RX_PW_P4, "R_RX_PW_P4\t");
     putreg(R_RX_PW_P5, "R_RX_PW_P5\t");
     putreg(R_FIFO_STATUS, "R_FIFO_STATUS\t");
-    putreg(R_DYNPD, "R_DYNPD\t");
+    putreg(R_DYNPD, "R_DYNPD    \t");
     putreg(R_FEATURE, "R_FEATURE\t");
 }
 
@@ -104,6 +104,8 @@ void main_radiotest(void)
     usbCDCInit();
     nrf_init();
     delayms(5000);
+    DoString(0,20,"radio test");
+    lcdDisplay();
  considered_harmful:
     printf("dump #%08x\r\n", count++);
     dumpRadioRegisters();
