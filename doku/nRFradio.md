@@ -52,3 +52,63 @@ R_FIFO_STATUS | 17 | 11 | RxFIFOs empty, TxFIFOs empty
 R_DYNPD | 1c | 00 | dynamic payload lenghts disabled
 R_FEATURE | 1d | 00 | no features enabled
 
+##micro:bit compatibility mode
+###Generic radio setup
+name | address | content | explanation  
+:--- | :---: | ---: | ---
+R_CONFIG | 00 | 0f | Rx, power up, 2 byte CRC, enable CRC, all interrupts enabled
+R_EN_AA | 01 | 00
+R_EN_RXADDR | 02 | 03
+R_SETUP_AW | 03 | 03
+R_SETUP_RETR | 04 | 03
+R_RF_CH | 05 | 02
+R_RF_SETUP | 06 | 06 | 0 dBm Tx power, 1 Mbit data rate
+R_STATUS | 07 | 0e
+R_OBSERVE_TX | 08 | 00
+R_RPD | 09 | 00
+R_RX_ADDR_P0 | 0a | e7e7e7e7e7
+R_RX_ADDR_P1 | 0b | c2c2c2c2c2
+R_RX_ADDR_P2 | 0c | c3
+R_RX_ADDR_P3 | 0d | c4
+R_RX_ADDR_P4 | 0e | c5
+R_RX_ADDR_P5 | 0f | c6
+R_TX_ADDR | 10 | e7e7e7e7e7
+R_RX_PW_P0 | 11 | 00
+R_RX_PW_P1 | 12 | 00
+R_RX_PW_P2 | 13 | 00
+R_RX_PW_P3 | 14 | 00
+R_RX_PW_P4 | 15 | 00
+R_RX_PW_P5 | 16 | 00
+R_FIFO_STATUS | 17 | 11
+R_DYNPD | 1c | 00
+R_FEATURE | 1d | 00
+
+###Configured radio setup
+name | address | content | explanation  
+:--- | :---: | ---: | ---
+R_CONFIG | 00 | 0f
+R_EN_AA | 01 | 00
+R_EN_RXADDR | 02 | 01
+R_SETUP_AW | 03 | 03
+R_SETUP_RETR | 04 | 03
+R_RF_CH | 05 | 07 | channel 7 (2.407 GHz)
+R_RF_SETUP | 06 | 06
+R_STATUS | 07 | 0e
+R_OBSERVE_TX | 08 | 00
+R_RPD | 09 | 00
+R_RX_ADDR_P0 | 0a | 0074696275
+R_RX_ADDR_P1 | 0b | c2c2c2c2c2
+R_RX_ADDR_P2 | 0c | c3
+R_RX_ADDR_P3 | 0d | c4
+R_RX_ADDR_P4 | 0e | c5
+R_RX_ADDR_P5 | 0f | c6
+R_TX_ADDR | 10 | 0074696275
+R_RX_PW_P0 | 11 | 20
+R_RX_PW_P1 | 12 | 00
+R_RX_PW_P2 | 13 | 00
+R_RX_PW_P3 | 14 | 00
+R_RX_PW_P4 | 15 | 00
+R_RX_PW_P5 | 16 | 00
+R_FIFO_STATUS | 17 | 11
+R_DYNPD | 1c | 00
+R_FEATURE | 1d | 00
