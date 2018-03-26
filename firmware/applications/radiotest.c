@@ -5,6 +5,15 @@
 #include <usbcdc/util.h>
 #include <lcd/render.h>
 
+
+struct NRF_CFG ubitconfig= {
+    .channel= 7,
+    .txmac= {'u','b','i','t',0},
+    .nrmacs= 1,
+    .mac0= {'u','b','i','t',0},
+    .maclen= {32,0,0,0,0}
+};
+
 /*-----------------------------------------------------------------------*/
 /* Transmit a byte via SPI                                               */
 /*-----------------------------------------------------------------------*/
@@ -39,7 +48,7 @@ void nrf_setup() {
     nrf_write_reg(R_CONFIG,
             R_CONFIG_PRIM_RX| // Receive mode
             R_CONFIG_PWR_UP|  // Power on
-            R_CONFIG_EN_CRC   // CRC on, single byte
+            R_CONFIG_EN_CRC|R_CONFIG_CRCO // CRC on, double byte
             );
     
     nrf_write_reg(R_EN_AA, 0); // Disable Enhanced ShockBurst;
@@ -107,7 +116,18 @@ void main_radiotest(void)
     gpioSetValue(RB_LED2, 0);
 
     usbCDCInit();
-    nrf_init();
+
+    nrf_setup();
+
+    while (BTN_RIGHT != getInputRaw());
+
+    printf("Generic radio setup\r\n");
+    dumpRadioRegisters();
+
+    nrf_config_set(&ubitconfig);
+
+    printf("Configured radio setup\r\n");
+    dumpRadioRegisters();
 
     DoString(12,20,"radio test");
     lcdDisplay();
