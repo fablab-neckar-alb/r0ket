@@ -3,7 +3,7 @@
 #include "core/ssp/ssp.h"
 #include "basic/xxtea.h"
 
-#define DEFAULT_SPEED R_RF_SETUP_DR_2M
+#define DEFAULT_SPEED R_RF_SETUP_DR_1M
 
 uint8_t _nrfresets=0;
 
@@ -392,7 +392,7 @@ void nrf_init() {
     nrf_write_reg(R_CONFIG,
             R_CONFIG_PRIM_RX| // Receive mode
             R_CONFIG_PWR_UP|  // Power on
-            R_CONFIG_EN_CRC   // CRC on, single byte
+            R_CONFIG_EN_CRC|R_CONFIG_CRCO // CRC on, double byte
             );
     
     nrf_write_reg(R_EN_AA, 0); // Disable Enhanced ShockBurst;
