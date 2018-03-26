@@ -14,53 +14,6 @@ struct NRF_CFG ubitconfig= {
     .maclen= {32,0,0,0,0}
 };
 
-/*-----------------------------------------------------------------------*/
-/* Transmit a byte via SPI                                               */
-/*-----------------------------------------------------------------------*/
-
-inline void xmit_spi(uint8_t dat) {
-    sspSend(0, (uint8_t*) &dat, 1);
-}
-
-inline void rcv_spi(uint8_t *dat) {
-    sspReceive(0, dat, 1);
-}
-
-#define CS_LOW()    gpioSetValue(RB_SPI_NRF_CS, 0)
-#define CS_HIGH()   gpioSetValue(RB_SPI_NRF_CS, 1)
-#define CE_LOW()    gpioSetValue(RB_NRF_CE, 0)
-#define CE_HIGH()   gpioSetValue(RB_NRF_CE, 1)
-
-void nrf_setup() {
-    // Enable SPI correctly
-    sspInit(0, sspClockPolarity_Low, sspClockPhase_RisingEdge);
-
-    // Enable CS & CE pins
-    gpioSetDir(RB_SPI_NRF_CS, gpioDirection_Output);
-    gpioSetPullup(&RB_SPI_NRF_CS_IO, gpioPullupMode_Inactive);
-    gpioSetDir(RB_NRF_CE, gpioDirection_Output);
-    gpioSetPullup(&RB_NRF_CE_IO, gpioPullupMode_PullUp);
-    CE_LOW();
-
-    // Setup for nrf24l01+
-    // power up takes 1.5ms - 3.5ms (depending on crystal)
-    CS_LOW();
-    nrf_write_reg(R_CONFIG,
-            R_CONFIG_PRIM_RX| // Receive mode
-            R_CONFIG_PWR_UP|  // Power on
-            R_CONFIG_EN_CRC|R_CONFIG_CRCO // CRC on, double byte
-            );
-    
-    nrf_write_reg(R_EN_AA, 0); // Disable Enhanced ShockBurst;
-
-    // Set speed / strength
-    nrf_write_reg(R_RF_SETUP,R_RF_SETUP_DR_1M|R_RF_SETUP_RF_PWR_3);
-
-    // Clear MAX_RT, just in case.
-    nrf_write_reg(R_STATUS,R_STATUS_MAX_RT);
-}
-
-
 void putreg(uint8_t reg, const char *name)
 {
     uint8_t contents= nrf_read_reg(reg);
@@ -117,7 +70,7 @@ void main_radiotest(void)
 
     usbCDCInit();
 
-    nrf_setup();
+    nrf_init();
 
     while (BTN_RIGHT != getInputRaw());
 
