@@ -412,7 +412,7 @@ void nrf_off() {
             ); // Most important: no R_CONFIG_PWR_UP
 }
 
-void nrf_startCW() {
+void nrf_startCW(uint8_t channel) {
     // Enable SPI correctly
     sspInit(0, sspClockPolarity_Low, sspClockPhase_RisingEdge);
 
@@ -432,7 +432,7 @@ void nrf_startCW() {
     nrf_write_reg(R_RF_SETUP, R_RF_SETUP_CONT_WAVE |
                               R_RF_SETUP_PLL_LOCK |
                               R_RF_SETUP_RF_PWR_3);
-    nrf_write_reg(R_RF_CH, 81);
+    nrf_write_reg(R_RF_CH, channel & 0x7f);
     CE_HIGH();
 }
 
