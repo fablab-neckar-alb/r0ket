@@ -63,6 +63,7 @@ void dumpRadioRegisters(void)
 void main_radiotest(void)
 {
     static int count= 0;
+    uint8_t button;
 
     gpioSetValue(RB_LED0, 0);
     gpioSetValue(RB_LED1, 0);
@@ -85,19 +86,31 @@ void main_radiotest(void)
     DoString(12,20,"radio test");
     lcdDisplay();
  considered_harmful:
-    while (BTN_ENTER != getInputRaw());
+    button= getInputRaw();
+    switch (button) {
+    case BTN_DOWN:
+        ubitconfig.channel--;
+        while (BTN_DOWN == getInputRaw());
+        goto considered_harmful;
+    case BTN_UP:
+        ubitconfig.channel++;
+        while (BTN_UP == getInputRaw());
+        goto considered_harmful;
+    case BTN_ENTER: 
+        gpioSetValue(RB_LED0, 1);
+        gpioSetValue(RB_LED1, 1);
+        gpioSetValue(RB_LED2, 1);
 
-    gpioSetValue(RB_LED0, 1);
-    gpioSetValue(RB_LED1, 1);
-    gpioSetValue(RB_LED2, 1);
-    
-    printf("dump #%08x\r\n", count++);
-    dumpRadioRegisters();
-    delayms(100);
+        nrf_startCW(ubitconfig.channel);
+        printf("dump #%08x\r\n", count++);
+        dumpRadioRegisters();
+        delayms(100);
+        nrf_init();
 
-    gpioSetValue(RB_LED0, 0);
-    gpioSetValue(RB_LED1, 0);
-    gpioSetValue(RB_LED2, 0);
-
-    goto considered_harmful;
+        gpioSetValue(RB_LED0, 0);
+        gpioSetValue(RB_LED1, 0);
+        gpioSetValue(RB_LED2, 0);
+    default:
+        goto considered_harmful;
+    }
 }
