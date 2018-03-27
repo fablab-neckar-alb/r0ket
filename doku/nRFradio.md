@@ -30,7 +30,7 @@ R_EN_AA | 01 | 00 | Disable auto acknowledgements 0-5
 R_EN_RXADDR	| 02 | 03 | enable RxD pipes 0-1, disable 2-5
 R_SETUP_AW | 03 | 03 | 5 bytes address width
 R_SETUP_RETR | 04 | 03 | 1 ms auto retransmit delay
-R_RF_CH | 05 | 02 | RF Channel 2002 MHz
+R_RF_CH | 05 | 02 | RF Channel 2002+2 MHz
 R_RF_SETUP | 06 | 0e | 0 dBm Tx power, 2 Mbit data rate
 R_STATUS | 07 | 0e | TxFIFO available, RxFIFOs empty, no interrupts
 R_OBSERVE_TX | 08 | 00 | no lost or retried packets
@@ -91,7 +91,7 @@ R_EN_AA | 01 | 00
 R_EN_RXADDR | 02 | 01
 R_SETUP_AW | 03 | 03
 R_SETUP_RETR | 04 | 03
-R_RF_CH | 05 | 07 | channel 7 (2.407 GHz)
+R_RF_CH | 05 | 07 | channel 7 (2.409 GHz)
 R_RF_SETUP | 06 | 06
 R_STATUS | 07 | 0e
 R_OBSERVE_TX | 08 | 00
